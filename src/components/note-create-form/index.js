@@ -20,7 +20,7 @@ export default class NoteForm extends React.Component {
       content: e.target.content.value,
     };
 
-    this.props.addNote({note});
+    this.props.addNote(note);
   }
 
   render() {

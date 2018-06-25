@@ -1,6 +1,7 @@
 import React from 'react';
 
 import NoteForm from '../note-create-form/index.js';
+import NoteList from '../note-list/index.js';
 
 export default class Dashboard extends React.Component {
 
@@ -8,19 +9,26 @@ export default class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      notes: [],
+      notes: {},
     };
 
     this.addNote = this.addNote.bind(this);
+    this.removeNote = this.removeNote.bind(this);
   }
 
   componentDidUpdate() {
     console.log('__STATE__', this.state);
   }
 
-  addNote(notes) {
-    this.setState(Object.assign(... this.state, {notes}));
+  addNote(data) {
+    let notes = {};
+    notes[data.id] = data;
+    this.setState({notes: Object.assign({}, this.state.notes, notes)});
+  }
 
+  removeNote(id) {
+    let {[id]: deleted, ...notes} = this.state.notes;
+    this.setState({notes});
   }
 
   render() {
@@ -28,6 +36,7 @@ export default class Dashboard extends React.Component {
       <React.Fragment>
         <h2>Dashboard</h2>
         <NoteForm addNote={this.addNote}/>
+        <NoteList notes={this.state.notes} delete={this.removeNote}/>
       </React.Fragment>
     );
   }
