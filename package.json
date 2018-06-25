@@ -11,6 +11,17 @@
     "start": "node ./src/server.js",
     "postinstall": "npm run build"
   },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "jest-setup.js"
+    ],
+    "setupFiles": [
+      "./__tests__/jest-setup.js"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(css|scss)$": "identity-obj-proxy"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/justeban/28-routing-and-testing.git"
@@ -50,6 +61,7 @@
     "node-sass": "^4.9.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-test-renderer": "^16.4.1",
     "resolve-url-loader": "^2.3.0",
